@@ -42,7 +42,7 @@ class RichPopupAttachmentsManager: AGSLoadableBase {
         if retrying { clear() }
         
         guard let popupManager = popupManager else {
-            loadDidFinishWithError(NSError.unknown)
+            loadDidFinishWithError(MissingRecordError())
             return
         }
         
@@ -316,5 +316,9 @@ extension RichPopupAttachmentsManager {
 extension RichPopupAttachmentsManager {
     struct InvalidOperation: LocalizedError {
         var localizedDescription: String { "The operation you are trying to perform is not permitted." }
+    }
+    
+    struct MissingRecordError: LocalizedError {
+        var localizedDescription: String { "Missing record." }
     }
 }
